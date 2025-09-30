@@ -1,0 +1,15 @@
+version: "3"
+
+tasks:
+  generate:
+    aliases:
+      - gen
+    desc: "Generate code from proto files"
+    cmds:
+      - mkdir -p protos/gen/go
+      - protoc --proto_path=protos/proto --go_out=protos/gen/go --go_opt=paths=source_relative --go-grpc_out=protos/gen/go --go-grpc_opt=paths=source_relative protos/proto/sso/sso.proto
+
+  clean:
+    desc: "Clean generated files"
+    cmds:
+      - rm -rf protos/gen/go
